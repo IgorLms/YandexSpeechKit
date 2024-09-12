@@ -1,0 +1,9 @@
+certifi==2024.8.30
+charset-normalizer==3.3.2
+grpcio==1.66.1
+idna==3.8
+protobuf==5.28.1
+pydub==0.25.1
+requests==2.32.3
+urllib3==2.2.2
+yandex-speechkit==1.5.0
