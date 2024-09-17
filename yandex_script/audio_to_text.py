@@ -15,7 +15,7 @@ def recognize(audio: str) -> None:
 
     # Распознавание речи в указанном аудиофайле и сохранение результатов в файл.
     result = model.transcribe_file(f'/YandexSpeechKit/data_asterisk/{audio}')
-    filename = f'{datetime.now().strftime("/YandexSpeechKit/data/text/audio_%d-%m-%Y_%H-%M-%S.txt")}'
+    filename = f'/YandexSpeechKit/data/text/{datetime.now().strftime("%Y/%m/%d/%H-%M-%S")}.txt'
 
     with open(filename, 'a', encoding='utf-8') as f:
         for _, res in enumerate(result):
