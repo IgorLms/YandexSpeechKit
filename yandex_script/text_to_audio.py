@@ -1,3 +1,4 @@
+import os
 from argparse import ArgumentParser
 
 from config import synthesize_config, yandex_config
@@ -14,6 +15,10 @@ def synthesize(text: str, export_path: str):
 
     # Синтез речи и создание аудио с результатом.
     result = model.synthesize(text, raw_format=False)
+
+    dirname = '/YandexSpeechKit/data/audio/'
+    os.makedirs(dirname, exist_ok=True)
+
     result.export(f'/YandexSpeechKit/data/audio/{export_path}.wav', 'wav')
 
 
