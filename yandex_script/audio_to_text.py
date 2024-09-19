@@ -7,7 +7,7 @@ from config import yandex_config, recognize_config
 yandex_config()
 
 
-def recognize(audio: str) -> None:
+def recognize(audio: str) -> str:
     """Аудио в текст"""
 
     # Конфигурация аудио в текст
@@ -20,6 +20,8 @@ def recognize(audio: str) -> None:
     with open(filename, 'a', encoding='utf-8') as f:
         for _, res in enumerate(result):
             f.write(res.normalized_text)
+
+    return filename
 
 
 if __name__ == '__main__':
