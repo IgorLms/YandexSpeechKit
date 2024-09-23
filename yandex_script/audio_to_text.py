@@ -1,14 +1,12 @@
-import os
-from datetime import datetime
 from argparse import ArgumentParser
 from config import yandex_config, recognize_config
-
+from services import save_file_audio_to_text
 
 # Аутентификация через API-ключ в Яндекс
 yandex_config()
 
 
-def recognize(audio: str) -> str:
+def recognize(audio: str) -> None:
     """Аудио в текст"""
 
     # Конфигурация аудио в текст
@@ -16,16 +14,9 @@ def recognize(audio: str) -> str:
 
     # Распознавание речи в указанном аудиофайле и сохранение результатов в файл.
     result = model.transcribe_file(f'/YandexSpeechKit/data_asterisk/{audio}')
-    date_time = datetime.now()
-    dirname = f'/YandexSpeechKit/data/text/{date_time.strftime("%Y/%m/%d/")}'
-    filename = f'/YandexSpeechKit/data/text/{date_time.strftime("%Y/%m/%d/%H-%M-%S")}.txt'
 
-    os.makedirs(dirname, exist_ok=True)
-    with open(filename, 'a', encoding='utf-8') as f:
-        for _, res in enumerate(result):
-            f.write(res.normalized_text)
-
-    return filename
+    # Сохранение результата расшифровки в файл
+    save_file_audio_to_text(result)
 
 
 if __name__ == '__main__':

@@ -2,8 +2,7 @@
 
 Проект по внедрению Yandex SpeechKit в FreePBX + Asterisk, который позволит решать следующие задачи:
 - [x] Переводить текст в аудио;
-- [x] Переводить аудио в текст;
-- [ ] Потоковое распознавание аудио в текст.
+- [x] Переводить аудио в текст.
 
 ## Быстрый старт
 ```bash
@@ -25,7 +24,7 @@ docker run \
   -t \
   --name yandex_speech_kit \
   --env-file .env \
-  -v "/$(pwd)/data":/YandexSpeechKit/data \
+  -v /$(pwd)/data:/YandexSpeechKit/data \
   -v /var/spool/asterisk/monitor:/YandexSpeechKit/data_asterisk \
   yandex_speech_kit:1
 
@@ -34,4 +33,6 @@ docker exec yandex_speech_kit python3 yandex_script/text_to_audio.py --export='�
 
 # Запуск скрипта 'аудио в текст' в докере
 docker exec yandex_speech_kit python3 yandex_script/audio_to_text.py --audio='путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
+# или
+docker exec yandex_speech_kit python3 yandex_script/agi_audio_to_text.py 'путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
 ```

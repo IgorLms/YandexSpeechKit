@@ -1,13 +1,13 @@
-import os
 from argparse import ArgumentParser
 
 from config import synthesize_config, yandex_config
+from services import save_file_text_to_audio
 
 # Аутентификация через API-ключ в Яндекс
 yandex_config()
 
 
-def synthesize(text: str, export_path: str):
+def synthesize(text: str, filename: str):
     """Текст в аудио"""
 
     # Конфигурация текст в аудио
@@ -16,10 +16,8 @@ def synthesize(text: str, export_path: str):
     # Синтез речи и создание аудио с результатом.
     result = model.synthesize(text, raw_format=False)
 
-    dirname = '/YandexSpeechKit/data/audio/'
-    os.makedirs(dirname, exist_ok=True)
-
-    result.export(f'/YandexSpeechKit/data/audio/{export_path}.wav', 'wav')
+    # Сохранение аудиофайла
+    save_file_text_to_audio(result, filename)
 
 
 if __name__ == '__main__':
