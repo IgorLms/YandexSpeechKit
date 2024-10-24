@@ -39,6 +39,8 @@ def synthesize_config() -> SynthesisModel:
 
     # Настройки синтеза.
     model.voice = 'jane'
-    model.role = 'good'
+    model.role = 'neutral'
+    model.speed = 1.14
+    model.sample_rate = 8000
 
     return model

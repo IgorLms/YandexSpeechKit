@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
-from config import synthesize_config, yandex_config
-from services import save_file_text_to_audio
+from services.config import synthesize_config, yandex_config
+from services.services import save_file_text_to_audio
 
 # Аутентификация через API-ключ в Яндекс
 yandex_config()

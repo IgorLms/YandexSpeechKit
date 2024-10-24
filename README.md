@@ -29,10 +29,10 @@ docker run \
   yandex_speech_kit:1
 
 # Запуск скрипта 'текст в аудио' в докере
-docker exec yandex_speech_kit python3 yandex_script/text_to_audio.py --export='название_файла' --text='текст_для_аудио'
+docker exec yandex_speech_kit python3 yandex/text_to_audio.py --export='название_файла' --text='текст_для_аудио'
 
 # Запуск скрипта 'аудио в текст' в докере
-docker exec yandex_speech_kit python3 yandex_script/audio_to_text.py --audio='путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
+docker exec yandex_speech_kit python3 yandex/audio_to_text.py --audio='путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
 # или
-docker exec yandex_speech_kit python3 yandex_script/agi_audio_to_text.py 'путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
+docker exec yandex_speech_kit python3 yandex/agi_audio_to_text.py 'путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
 ```
