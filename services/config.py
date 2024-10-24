@@ -6,7 +6,7 @@ from speechkit.tts import SynthesisModel
 
 
 def yandex_config() -> None:
-    """Аутентификация через API-ключ в Яндекс"""
+    """Аутентификация через API-ключ в Яндекс версия 3"""
 
     # Парсинг файла .env
     load_dotenv()
@@ -32,15 +32,24 @@ def recognize_config() -> RecognitionModel:
     return model
 
 
-def synthesize_config() -> SynthesisModel:
+def synthesize_config(text: str) -> tuple:
     """Конфигурация текст в аудио"""
 
-    model = model_repository.synthesis_model()
+    url = 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize'
 
-    # Настройки синтеза.
-    model.voice = 'jane'
-    model.role = 'neutral'
-    model.speed = 1.14
-    model.sample_rate = 8000
+    headers = {
+        'Authorization': 'Api-Key ' + str(os.getenv("API_KEY")),
+    }
 
-    return model
+    data = {
+        'text': text,
+        'lang': 'ru-RU',
+        'voice': 'jane',
+        'emotion': 'neutral',
+        'speed': 1.14,
+        'folderId': str(os.getenv("FOLDER_ID")),
+        'format': 'lpcm',
+        'sampleRateHertz': 8000,
+    }
+
+    return url, headers, data

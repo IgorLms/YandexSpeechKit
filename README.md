@@ -21,4 +21,6 @@ python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу'
 python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу' --return_='exist_text'
 # Запуск скрипта 'аудио в текст' с распечаткой текста распознавания
 python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу' --return_='text'
+# Запуск скрипта 'текст в аудио'
+python3 yandex/text_to_audio.py --text='текст_для_перевода' --output='путь_для_сохранения_аудио_файла'
 ```

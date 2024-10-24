@@ -1,8 +1,5 @@
 import os
 from datetime import datetime
-from typing import Union
-
-from pydub import AudioSegment
 from speechkit.stt import Transcription
 
 
@@ -31,25 +28,6 @@ def save_file_audio_to_text(result: list[Transcription], path: str = None) -> st
             f.write(res.normalized_text)
 
     return filename
-
-
-def save_file_text_to_audio(result: Union[bytes, AudioSegment], filename: str, path: str = None) -> None:
-    """
-    Сохранение результата расшифровки в файл.
-
-    :param result: Результат расшифровки
-    :param filename: Имя файла для сохранения
-    :param path: Путь для сохранения результата расшифровки
-    """
-
-    # Создаем директорию
-    if path is not None:
-        dir_name = path
-    else:
-        dir_name = '/YandexSpeechKit/data/audio/'
-    os.makedirs(dir_name, exist_ok=True)
-
-    result.export(f'{dir_name}/{filename}.wav', 'wav')
 
 
 def result_is_null(result: list[Transcription]) -> None:
