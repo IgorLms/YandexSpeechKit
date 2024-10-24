@@ -15,24 +15,10 @@ cd YandexSpeechKit/
 # Добавление API ключа YandexSpeechKit
 echo API_KEY=API_KEY > .env
 
-# Сборка образа
-docker build -t yandex_speech_kit:1 .
-
-# Запуск образа
-docker run \
-  -d \
-  -t \
-  --name yandex_speech_kit \
-  --env-file .env \
-  -v /$(pwd)/data:/YandexSpeechKit/data \
-  -v /var/spool/asterisk/monitor:/YandexSpeechKit/data_asterisk \
-  yandex_speech_kit:1
-
-# Запуск скрипта 'текст в аудио' в докере
-docker exec yandex_speech_kit python3 yandex/text_to_audio.py --export='название_файла' --text='текст_для_аудио'
-
-# Запуск скрипта 'аудио в текст' в докере
-docker exec yandex_speech_kit python3 yandex/audio_to_text.py --audio='путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
-# или
-docker exec yandex_speech_kit python3 yandex/agi_audio_to_text.py 'путь_к_файлу_в_папке_/var/spool/asterisk/monitor'
+# Запуск скрипта 'аудио в текст'
+python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу'
+# Запуск скрипта 'аудио в текст' с распечаткой существования текста распознавания
+python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу' --return_='exist_text'
+# Запуск скрипта 'аудио в текст' с распечаткой текста распознавания
+python3 yandex/audio_to_text.py --audio='путь_к_аудио_файлу' --return_='text'
 ```
